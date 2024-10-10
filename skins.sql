@@ -1,0 +1,19 @@
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  balance DECIMAL(10, 2) DEFAULT 0
+);
+
+CREATE TABLE items (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  price DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE purchases (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  item_id INTEGER REFERENCES items(id),
+  price DECIMAL(10, 2) NOT NULL,
+  purchase_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
